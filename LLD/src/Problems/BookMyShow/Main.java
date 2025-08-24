@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MovieTicketSystem system = new MovieTicketSystem();
+        MovieTicketSystem system = MovieTicketSystem.getInstance();
 
         System.out.println("## 1. List all cities where cinemas are present ##");
         system.getCities().forEach(city -> System.out.println("- " + city));

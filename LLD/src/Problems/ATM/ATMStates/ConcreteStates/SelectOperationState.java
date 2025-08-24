@@ -15,7 +15,6 @@ public class SelectOperationState extends ATMState {
     public void selectOperation(ATM atmObject, Card card, TransactionType txnType){
 
         switch (txnType) {
-
             case CASH_WITHDRAWAL:
                 atmObject.setAtmState(new CashWithdrawalState());
                 break;

@@ -11,7 +11,7 @@ public class Show {
     public Movie movie;
     public Screen screen;
     public Map<String, SeatStatus> allSeatStatus;
-    public Date startTime;
+    public Date startTime; // not needed anywhere I suppose
 
     public Show(String id, Movie movie, Screen screen, Date startTime) {
         this.showId = id;

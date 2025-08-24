@@ -2,7 +2,7 @@ package Problems.BookMyShow;
 
 // ========== MAIN SYSTEM CONTROLLER ==========
 
-import Problems.BookMyShow.controllers.MovieController;
+import Problems.BookMyShow.observer.Observer;
 import Problems.BookMyShow.controllers.TheatreController;
 import Problems.BookMyShow.enums.City;
 import Problems.BookMyShow.enums.SeatCategory;
@@ -18,6 +18,7 @@ import java.util.*;
  * This acts as our in-memory database and controller.
  */
 class MovieTicketSystem {
+    private static MovieTicketSystem instance;
     private final Map<String, Show> allShows;
 
     private final Map<String, City> cities;
@@ -25,7 +26,15 @@ class MovieTicketSystem {
     private final TicketBookingService bookingService;
     private final TheatreController theatreController;
 
-    public MovieTicketSystem() {
+    public static synchronized MovieTicketSystem getInstance() {
+        //Singleton Pattern
+        if (instance == null) {
+            instance = new MovieTicketSystem();
+        }
+        return instance;
+    }
+
+    private MovieTicketSystem() {
         this.theatreController = new TheatreController();
         cities = new HashMap<>();
         allShows = new HashMap<>();
@@ -73,6 +82,16 @@ class MovieTicketSystem {
     // 7. Users can view their booking history.
     public List<Booking> getBookingHistory(String userId) {
         return users.get(userId).bookingHistory;
+    }
+    
+    // Method to add observers to the booking service
+    public void addBookingObserver(Observer observer) {
+        bookingService.addObserver(observer);
+    }
+    
+    // Method to remove observers from the booking service
+    public void removeBookingObserver(Observer observer) {
+        bookingService.removeObserver(observer);
     }
 
     private void setupMockData() {

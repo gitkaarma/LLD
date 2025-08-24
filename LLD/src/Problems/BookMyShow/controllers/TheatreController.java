@@ -52,7 +52,6 @@ public class TheatreController {
                 theatreVsShows.put(theatre, givenMovieShows);
             }
         }
-
         return theatreVsShows;
     }
 

@@ -1,5 +1,6 @@
 package Problems.BookMyShow.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -10,6 +11,7 @@ public class User {
     public User(String userId, String userName) {
         this.userId = userId;
         this.userName = userName;
+        bookingHistory = new ArrayList<>();
     }
 
     public void addBooking(Booking booking) {
